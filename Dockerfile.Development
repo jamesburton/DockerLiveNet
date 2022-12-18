@@ -1,0 +1,16 @@
+# This dockerfile is used to run a hot-reloading development environment
+# It is not intended for production use
+# It requires the root volume to be mounted to the source folder
+
+# Use the .NET 7.0 SDK image as the base image
+FROM mcr.microsoft.com/dotnet/sdk:7.0
+
+# Set the working directory to /app
+WORKDIR /app
+
+# Set the port exposed to 6001
+EXPOSE 6001
+# Configure to not attempt to open a browser on launch
+ENV DOTNET_WATCH_SUPPRESS_LAUNCH_BROWSER=1
+# Run the app in watch mode on port 15001
+CMD ["dotnet", "watch", "run", "--urls", "http://*:15001"]

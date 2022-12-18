@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  web:
+    image: dockerlivenet-web:dev
+    container_name: web
+    build:
+      context: .
+      dockerfile: Dockerfile.Development
+    volumes:
+      - .:/app
+      #- node_modules:/app/node_modules
+    ports:
+      - 15001:15001
+    environment:
+      - NODE_ENV=development
+      - PORT=15001
+      - HOST=localhost
+      #- MONGO_URL=mongodb://mongo:27017
+      #- MONGO_DB=dev
+      #- MONGO_USER=dev
+      #- MONGO_PASSWORD=dev
+      #- JWT_SECRET=dev
+      #- JWT_EXPIRES_IN=1d
+      #- JWT_COOKIE_EXPIRES_IN=1
+      #- EMAIL_HOST=localhost
+    #networks:
+    #  - dev
+    #depends_on:
+    #  - mongo
+    #  - redis
